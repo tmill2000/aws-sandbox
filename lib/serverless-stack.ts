@@ -13,7 +13,7 @@ export class ServerlessStack extends cdk.Stack {
     //   visibilityTimeout: cdk.Duration.seconds(300)
     // });
     new lambda.Function(this, "test-handler", {
-      runtime: lambda.Runtime.NODEJS_LATEST,
+      runtime: lambda.Runtime.NODEJS_22_X,
       handler: "test-handler.ts",
       code: lambda.Code.fromAsset("src/handlers"),
     });
