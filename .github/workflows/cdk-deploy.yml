@@ -13,23 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "22"
-
-      # Install dependencies
       - name: Install dependencies
         run: |
           npm install -g aws-cdk  # Install AWS CDK globally
           npm install             # Install project dependencies from package.json
 
-      # Configure AWS Credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -37,15 +32,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      #Bootstrap
       - name: CDK Bootstrap
         run: cdk bootstrap
 
-      # Synthesize the CDK stack
       - name: CDK Synthesize
         run: cdk synth
 
-      # Deploy the CDK stack
       - name: CDK Deploy
         run: |
           cdk deploy --require-approval never

@@ -6,12 +6,6 @@ export class ServerlessStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'AwsSandboxQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
     new lambda.Function(this, "test-handler", {
       runtime: lambda.Runtime.NODEJS_22_X,
       handler: "test-handler.ts",
